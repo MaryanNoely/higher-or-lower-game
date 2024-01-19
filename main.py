@@ -29,6 +29,7 @@ def guess_result(user_guess,list_of_dict):
         return 0  
 
 def format_account(instagram_account):
+    """Takes accounts data and returns printable format"""
     account_name=instagram_account['name']
     account_desc=instagram_account['description']
     account_country=instagram_account['country']
