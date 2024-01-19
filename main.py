@@ -4,13 +4,10 @@ import random
 import os
 
 
-# pick 2 to compare and print -> function
-
 def pick_random(list_of_dict):
     """Returns a random IG account from the DB on game_data"""
     db_size=len(list_of_dict)
     num=random.randint(0,db_size-1)
-    print(f"TEST chosen {list_of_dict[num]}")
     return list_of_dict[num]
 
 def compare_followers(accounts):
