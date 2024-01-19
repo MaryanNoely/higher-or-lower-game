@@ -37,7 +37,9 @@ def game():
     accounts.append(pick_random(data))
     result=1
     while(result):
-        accounts.append(pick_random(data)) #Missing IF A=B validation
+        accounts.append(pick_random(data)) 
+        while accounts[0] == accounts[1]:    #IF A=B validation
+            accounts[1]=pick_random(data)
         print(f"Compare A: {accounts[0]['name']}, a {accounts[0]['description']}, from {accounts[0]['country']}" )
         print(art.vs)
         print(f"Against B: {accounts[1]['name']}, a {accounts[1]['description']}, from {accounts[1]['country']}" )
