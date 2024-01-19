@@ -17,13 +17,13 @@ def compare_followers(accounts):
     else:
         return 1
 
-def guess_result(guess,higher_account):
+def guess_result(user_guess,list_of_dict):
     """Returns the score increase. 1 if the guess was right or 0 if it was wrong"""
     options=["a","b"]
-    if guess not in options:
+    if user_guess not in options:
         print("Not an option")
         return 0
-    if options.index(guess)==higher_account:
+    if options.index(user_guess)==compare_followers(list_of_dict):
         return 1      
     else:
         return 0  
@@ -42,11 +42,10 @@ def game():
         print(art.vs)
         print(f"Against B: {accounts[1]['name']}, a {accounts[1]['description']}, from {accounts[1]['country']}" )
         guess=input("Who has more followers? Type 'A' or 'B': ").lower()
-        higher_account=compare_followers(accounts)
-        result=guess_result(guess, higher_account)
+        result=guess_result(guess, accounts)
         if result:
             score+=result
-            accounts=[accounts[higher_account]]
+            accounts.pop(0)
             os.system('cls')
             print(f"You're right! Current score: {score}.")
         else:
