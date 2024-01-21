@@ -22,11 +22,11 @@ def check_answer(user_guess,list_of_dict):
     options=["a","b"]
     if user_guess not in options:
         print("Not an option")
-        return 0
+        return False
     if options.index(user_guess)==compare_followers(list_of_dict):
-        return 1      
+        return True      
     else:
-        return 0  
+        return False  
 
 def format_account(instagram_account):
     """Takes accounts data and returns printable format"""
@@ -42,19 +42,26 @@ def higher_or_lower_game():
     score=0
     accounts=[]
     accounts.append(pick_random(data))
-    result=1
-    while(result):
+
+    while True:
+        #Pick random accounts and print info
         accounts.append(pick_random(data)) 
         while accounts[0] == accounts[1]:    #IF A=B validation
             accounts[1]=pick_random(data)
         print(f"Compare A: {format_account(accounts[0])}" )
         print(art.vs)
         print(f"Against B: {format_account(accounts[1])}" )
+
+        #Request user to guess
         guess=input("Who has more followers? Type 'A' or 'B': ").lower()
+
+        #Calculate result and clear console
         result=check_answer(guess, accounts)
         os.system('cls')
+
+        # Calculate score and print message 
         if result:
-            score+=result
+            score+=1
             accounts.pop(0)
             print(f"You're right! Current score: {score}.")
         else:
