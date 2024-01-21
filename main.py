@@ -17,7 +17,7 @@ def compare_followers(accounts):
     else:
         return 1
 
-def guess_result(user_guess,list_of_dict):
+def check_answer(user_guess,list_of_dict):
     """Returns the score increase. 1 if the guess was right or 0 if it was wrong"""
     options=["a","b"]
     if user_guess not in options:
@@ -35,7 +35,7 @@ def format_account(instagram_account):
     account_country=instagram_account['country']
     return f"{account_name}, a {account_desc}, from {account_country}"
 
-def game():
+def higher_or_lower_game():
     """User guess which of the 2 IG account randomly choosen from db has more followers.
     If user is right he increase the score in 1 point until he misses, then the game ends"""
     continue_game=True
@@ -51,18 +51,17 @@ def game():
         print(art.vs)
         print(f"Against B: {format_account(accounts[1])}" )
         guess=input("Who has more followers? Type 'A' or 'B': ").lower()
-        result=guess_result(guess, accounts)
+        result=check_answer(guess, accounts)
+        os.system('cls')
         if result:
             score+=result
             accounts.pop(0)
-            os.system('cls')
             print(f"You're right! Current score: {score}.")
         else:
-            os.system('cls')
             print(f"Sorry, that's wrong. Final score: {score}.") 
-            return
+            return 
 
 print(art.logo)
-game()
+higher_or_lower_game()
 
 
